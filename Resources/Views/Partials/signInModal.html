@@ -1,0 +1,77 @@
+<div
+  class="modal fade"
+  id="signInModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="signInModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="exampleModalLabel">Sign In</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="../authentication/signIn.php"
+          method="post"
+          id="signInForm"
+        >
+          <label for="emailSignIn" class="form-label">E-mail:</label>
+          <input
+            type="email"
+            name="email"
+            id="emailSignIn"
+            class="form-control mb-3"
+          />
+          <label for="passwordSignIn" class="form-label">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="passwordSignIn"
+            class="form-control mb-3"
+          />
+
+          <p>
+            Don't have an acount?<span
+              class="text-success"
+              id="signUpText"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              data-bs-toggle="modal"
+              data-bs-target="#signUpModal"
+              style="cursor: pointer"
+              >Sign Up</span
+            >
+          </p>
+
+          <div class="modal-footer">
+            <button
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              type="button"
+              id="closeSignInBtn"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="signInBtn"
+              disabled
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
