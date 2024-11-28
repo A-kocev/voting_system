@@ -1,3 +1,3 @@
-<script src="../JS/nav.js"></script>
+<script type="module" src="../JS/nav.js"></script>
 </body>
 </html>
