@@ -1,0 +1,79 @@
+<div
+  class="modal fade"
+  id="signUpModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="signUpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="exampleModalLabel">Sign Up</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="../authentication/signUp.php"
+          method="post"
+          id="signUpForm"
+        >
+          <label for="name" class="form-label">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control mb-3"
+            required
+          />
+          <label for="email" class="form-label">E-mail:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control mb-3"
+            required
+          />
+          <label for="password" class="form-label">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control mb-3"
+          />
+          <p id="passwordMsg"></p>
+
+          <p>
+            Already have an acount?<span
+              class="text-primary"
+              id="signInText"
+              data-bs-dismiss="modal"
+              data-bs-toggle="modal"
+              data-bs-target="#signInModal"
+              aria-label="Close"
+              style="cursor: pointer"
+              >Sign In</span
+            >
+          </p>
+          <div class="modal-footer">
+            <button
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              type="button"
+              id="closeSignUpBtn"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-success" id="signUpBtn" disabled>Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
