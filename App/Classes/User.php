@@ -49,6 +49,7 @@ class User
 
         echo '<script>
         localStorage.setItem("name", "' . $this->name . '");
+        localStorage.setItem("role", "' . $this->role['role'] . '");
         localStorage.setItem("userId" , "' . $this->connection->lastInsertId() . '");
         setTimeout(function() {
           window.location.href = "../../Resources/Views/index.php?loggedUser";
@@ -72,6 +73,7 @@ class User
                     echo '<script>
                     localStorage.setItem("name", "' . $userData['name'] . '");
                     localStorage.setItem("role", "' . $userData['role'] . '");
+                    localStorage.setItem("userId", "' . $userData['id'] . '");
                     setTimeout(function() {
                     window.location.href = "../../Resources/Views/adminPanel.php?loggedUser";
                     }, 100); 
@@ -80,6 +82,7 @@ class User
                     echo '<script>
                     localStorage.setItem("name", "' . $userData['name'] . '");
                     localStorage.setItem("role", "' . $userData['role'] . '");
+                    localStorage.setItem("userId", "' . $userData['id'] . '");
                     setTimeout(function() {
                     window.location.href = "../../Resources/Views/index.php?loggedUser";
                     }, 100); 
@@ -92,4 +95,13 @@ class User
             header('location:../../Resources/Views/index.php?Wrong%20credentials');
         }
     }
+        public static function getAllUsersExpectTheCurrentOne($userId){
+                $connectionObj = new Connection();
+                $connection = $connectionObj->getPdo();
+                $query = $connection->prepare('SELECT * from users where id  != :userId');
+                $query->bindParam(':userId', $userId, PDO::PARAM_INT);
+                $query->execute();
+                $users = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($users);
+        }
 }

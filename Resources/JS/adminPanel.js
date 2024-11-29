@@ -5,7 +5,6 @@ $(document).ready(function () {
         method: "GET",
         dataType: "json",
         success: function (response) {
-            console.log(response.opened);
             if (response.opened) {
                 $('#adminStart')[0].disabled = true;
                 $('#adminEnd')[0].disabled = false;
