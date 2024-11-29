@@ -25,6 +25,10 @@
             </div>
             <div class="col-4">
                 <h2 class="text center">Results of the last voting</h2>
+                <h3 class="text-primary">Top Voters</h3>
+                <div id="topVoters"></div>
+                <h3 class="text-primary">Winners in each category</h3>
+                <div id="winners"></div>
             </div>
         </div>
     </div>
