@@ -32,7 +32,7 @@ $(document).ready(function () {
   // checking if a user is logged
   if (localStorage.getItem("name")) {
     functions.logged();
-    if (location.search) {
+    if (location.search.includes("logged")) {
       history.pushState({}, document.title, location.pathname);
       $(".container #firstRow").before(
         '<p class="position-absolute start-50 translate-middle alert alert-success w-25 text-center opacity-75">You are logged successufully</p>'
@@ -88,5 +88,4 @@ $("#closeSignUpBtn,#closeSignInBtn, .btn-close").click(function () {
       }
     }
   );
-console.log('ace');
 
