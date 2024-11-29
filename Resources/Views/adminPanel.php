@@ -1,4 +1,9 @@
 <?php include "partials/header.php"; ?>
+<script>
+    if(localStorage.getItem("role") !=1 ){
+        location.href="index.php"
+    }
+</script>
 <main>
     <div class="container mt-5">
         <div class="row pt-3"  id="firstRow">
@@ -10,10 +15,11 @@
                         <img src="../../Images/election.jpg" alt="election_image" class="img-fluid pr-5">
                     </div>
                     <div class="col-6   ">
-                        <h2 id="votingStart" class="text-center"></h2>
-                        <p class="fs-5" id="voteMsg"></p>
-                        <div id="authMsg" class="mt-3 text-center alert alert-warning" style="display:none;">you need to be signed in to vote!</div>
-                        <button class="btn btn-primary px-3 btn-lg" id="voteBtn">Vote</button>
+                        <h2 id="votingStartAdmin" class="text-center"></h2>
+                        <div class="d-flex justify-content-between mt-5 px-5">
+                            <button class="btn btn-success" id="adminStart">Start Vote</button>
+                            <button class="btn btn-danger" id="adminEnd">End Vote</button>
+                        </div>
                     </div>
                 </div>
             </div>

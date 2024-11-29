@@ -34,8 +34,8 @@ $(document).ready(function () {
     functions.logged();
     if (location.search) {
       history.pushState({}, document.title, location.pathname);
-      $(".container").after(
-        '<p class="alert alert-success w-25 text-center mx-auto opacity-75">You are logged successufully</p>'
+      $(".container #firstRow").before(
+        '<p class="position-absolute start-50 translate-middle alert alert-success w-25 text-center opacity-75">You are logged successufully</p>'
       );
       setTimeout(function () {
         $(".alert-success").slideUp();
