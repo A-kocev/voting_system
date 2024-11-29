@@ -7,8 +7,6 @@ require_once '../../DatabaseConfiguration/Database.php';
 use PDO;
 use Database\Connection as Connection;
 
-$connectionObj = new Connection();
-$connection = $connectionObj->getPdo();
 class User
 {
     private $connection;
@@ -70,13 +68,23 @@ class User
         $userData = $this->getUserByEmail();
         if ($userData) {
             if (password_verify($this->password, $userData['password'])) {
-                echo '<script>
-                        localStorage.setItem("name", "' . $userData['name'] . '");
-                        localStorage.setItem("role", "' . $userData['role'] . '");
-                        setTimeout(function() {
-                        window.location.href = "../../Resources/Views/index.php?loggedUser";
-                        }, 100); 
-                    </script>';
+                if ($userData['role'] == 1) {
+                    echo '<script>
+                    localStorage.setItem("name", "' . $userData['name'] . '");
+                    localStorage.setItem("role", "' . $userData['role'] . '");
+                    setTimeout(function() {
+                    window.location.href = "../../Resources/Views/adminPanel.php?loggedUser";
+                    }, 100); 
+                </script>';
+                } else {
+                    echo '<script>
+                    localStorage.setItem("name", "' . $userData['name'] . '");
+                    localStorage.setItem("role", "' . $userData['role'] . '");
+                    setTimeout(function() {
+                    window.location.href = "../../Resources/Views/index.php?loggedUser";
+                    }, 100); 
+                </script>';
+                }
             } else {
                 header('location:../../Resources/Views/index.php?Wrong%20credentials');
             }
