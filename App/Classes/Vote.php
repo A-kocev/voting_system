@@ -65,4 +65,40 @@ class Vote
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($results);
     }
+    public static function getWinners()
+    {
+        $connectionObj = new Connection();
+        $connection = $connectionObj->getPdo();
+        $query = $connection->prepare('WITH ranked_votes AS (
+                                            SELECT 
+                                                v.category, 
+                                                v.nominee, 
+                                                u.name AS nominee_name, 
+                                                c.name AS category_name,
+                                                COUNT(DISTINCT v.voter) AS total_votes, 
+                                                ROW_NUMBER() OVER (PARTITION BY v.category ORDER BY COUNT(DISTINCT v.voter) DESC) AS rank
+                                            FROM 
+                                                votes v
+                                            JOIN 
+                                                users u ON v.nominee = u.id
+                                            JOIN 
+                                                categories c ON v.category = c.id
+                                            WHERE 
+                                                v.nominee != v.voter 
+                                            GROUP BY 
+                                                v.category, v.nominee, u.name, c.name
+                                        )
+                                        SELECT 
+                                            category_name, 
+                                            nominee_name, 
+                                            total_votes
+                                        FROM 
+                                            ranked_votes
+                                        WHERE 
+                                            rank = 1;
+                                        ');
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($results);
+    }
 }
