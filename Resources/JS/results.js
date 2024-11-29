@@ -16,7 +16,7 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response);
             $.each(response, function (index, value) {
-                $('#winners').append(`<p>Winner in "<span>${value.category_name}</span>" is <span>${value.nominee_name}</span> with <span>${value.total_votes}</span> votes </p>`);
+                $('#winners').append(`<p>Winner in "<span>${value.category_name}</span>" is <span>${value.nominee_name}</span> with <span>${value.total_votes}</span> votes </p><p><a href="./generatepdf.php?category=${value.category_name}&name=${value.nominee_name}&number_of_votes=${value.total_votes}">Generate pdf</a></p>`);
             });
         }
     })
