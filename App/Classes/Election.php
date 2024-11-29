@@ -21,6 +21,18 @@ use Database\Connection as Connection;
             $electionData = $existingElection->fetch(PDO::FETCH_ASSOC);
             echo json_encode($electionData);
         }
+        public function start(){
+            $query = $this->connection->prepare('UPDATE elections SET opened = 1 WHERE year = :year');
+            $query->bindParam(':year', $this->year, PDO::PARAM_INT);
+            $query->execute();
+            echo json_encode(['success' => 'The election has been started']);
+        }
+        public function end(){
+            $query = $this->connection->prepare('UPDATE elections SET opened = 0 WHERE year = :year');
+            $query->bindParam(':year', $this->year, PDO::PARAM_INT);
+            $query->execute();
+            echo json_encode(['success' => 'The election has been ended']);
+        }
     }
 
 
