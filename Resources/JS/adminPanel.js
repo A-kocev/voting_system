@@ -18,4 +18,35 @@ $(document).ready(function () {
 
         }
     })
+    const currentYear = new Date().getFullYear();
+    // start vote
+    $('#adminStart').click(function(){
+        $.ajax({
+            url: "../../Routes/Api/election_Start_End.php",
+            method: "POST",
+            dataType: "json",
+            data:{
+                do:'start',
+                year:currentYear
+            },
+            success: function () {
+                location.reload();
+            }
+        })
+    })
+    //end vote
+    $('#adminEnd').click(function(){
+        $.ajax({
+            url: "../../Routes/Api/election_Start_End.php",
+            method: "POST",
+            dataType: "json",
+            data:{
+                do:'end',
+                year:currentYear
+            },
+            success: function () {
+                location.reload();
+            }
+        })
+    })
 });
